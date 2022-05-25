@@ -3,20 +3,21 @@ import { StyleSheet, Text, View } from 'react-native';
 import { useEffect } from 'react';
 
 export default function App() {
-
   useEffect(async () => {
-    try {
-      const response = await fetch(
-        "https://my-first-firestore-mb.web.app/restaurants"
-      );
-      const data = await response.json();
-      console.log(data);
-    } catch (err) {
-      console.error(err);
-    }
-  }, []);
+    const getData = async () => {
+      try {
+        const response = await fetch(
+          "https://my-first-firestore-mb.web.app/restaurants"
+        );
+        const data = await response.json();
+        console.log(data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
 
-  
+    getData();
+  }, []);
 
   return (
     <View style={styles.container}>
