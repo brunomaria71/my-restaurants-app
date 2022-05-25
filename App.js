@@ -1,8 +1,9 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, ActivityIndicator, ImageBackground } from "react-native";
+import { StyleSheet, Text, View, ActivityIndicator, ImageBackground, ScrollView} from "react-native";
 import { useEffect, useState } from "react";
 
-const image = {uri: 'https://wallpapercave.com/wp/wp5514652.png'}
+const image = {uri: 'https://png.pngtree.com/background/20210710/original/pngtree-restaurant-menu-background-material-picture-image_1052797.jpg'}
+
 export default function App() {
   const [allRestaurants, setAllRestaurants] = useState();
 
@@ -25,15 +26,18 @@ export default function App() {
   return (
     <View style={styles.container}>
       <ImageBackground resizeMode='cover' source={image} style={styles.container} >
-      <Text style={styles.words}>Maria's Restaurant App</Text>
+      <ScrollView>
+      <Text style={styles.restaurantsName}>Maria's Restaurant App</Text>
+
       {allRestaurants ? (
         allRestaurants?.map((restaurant) => {
-          return <Text key={restaurant.id} style={styles.words}>{restaurant.name}</Text>;
+          return <Text key={restaurant.id} style={styles.restaurantsName}>{restaurant.name}</Text>;
         })
       ) : (
         <ActivityIndicator size="large" color="purple" />
       )}
       <StatusBar style="auto" />
+      </ScrollView>
       </ImageBackground>
     </View>
   );
@@ -47,10 +51,14 @@ const styles = StyleSheet.create({
     justifyContent: "center",
     width: '100%',
   },
-  words: {
+  restaurantsName: {
     color: 'black',
     fontWeight: 'bold',
-    fontSize: '25',
-    fontFamily: "Cochin"
+    fontSize: 25,
+    fontFamily: "Cochin",
+    marginVertical: 150
   }
 });
+
+
+      // {/* <Image source={{ uri: restaurant.image}} style={{width: '100%', height:100}} /> */}
