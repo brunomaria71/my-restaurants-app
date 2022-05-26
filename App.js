@@ -3,6 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import {
   SafeAreaView, View, ActivityIndicator, ImageBackground, ScrollView
 } from 'react-native';
+import { NavigationContainer } from '@react-navigation/native';
 import RestaurantCard from './src/components/RestaurantCard';
 import styles from './src/styles';
 
