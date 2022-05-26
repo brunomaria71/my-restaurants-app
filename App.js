@@ -1,5 +1,5 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, ActivityIndicator, ImageBackground, ScrollView} from "react-native";
+import { StyleSheet, Text, View, ActivityIndicator, ImageBackground, ScrollView, Image, Button} from "react-native";
 import { useEffect, useState } from "react";
 
 const image = {uri: 'https://png.pngtree.com/background/20210710/original/pngtree-restaurant-menu-background-material-picture-image_1052797.jpg'}
@@ -8,19 +8,10 @@ export default function App() {
   const [allRestaurants, setAllRestaurants] = useState();
 
   useEffect(() => {
-    const getData = async () => {
-      try {
-        const response = await fetch(
-          "https://my-first-firestore-mb.web.app/restaurants"
-        );
-        const data = await response.json();
-        setAllRestaurants(data);
-      } catch (err) {
-        console.error(err);
-      }
-    };
-
-    getData();
+    fetch("https://my-first-firestore-mb.web.app/restaurants")
+      .then(response => response.json())
+      .then(data => setAllRestaurants(data))
+      .catch(console.error);
   }, []);
 
   return (
